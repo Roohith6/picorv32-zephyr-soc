@@ -1,0 +1,6 @@
+# Kconfig
+# SoC-specific settings, including the architecture select. This file
+# is sourced by soc/Kconfig automatically.
+
+config SOC_PICORV32_SOC
+	select RISCV

@@ -1,0 +1,66 @@
+/*
+ * Devicetree for picorv32_board, adapted from Zephyr's own
+ * qemu_riscv32 reference (dts/riscv/qemu/virt-riscv.dtsi +
+ * virt-riscv32.dtsi), trimmed down to match this actual hardware:
+ * single core, no CLINT/PLIC (interrupts not wired up yet), no
+ * PCIe/virtio, and only the RV32I base ISA (matches every -march=rv32i
+ * compile done so far -- no m/a/f/d/c/zicsr/zifencei claimed, since
+ * the hardware hasn't been proven to support them).
+ */
+
+/dts-v1/;
+
+/ {
+	#address-cells = <0x01>;
+	#size-cells = <0x01>;
+	compatible = "picorv32,picorv32-soc";
+	model = "PicoRV32 Custom SoC";
+
+	chosen {
+		zephyr,sram = &ram0;
+		zephyr,console = &uart0;
+		zephyr,shell-uart = &uart0;
+	};
+
+	cpus {
+		#address-cells = <0x01>;
+		#size-cells = <0x00>;
+
+		cpu@0 {
+			device_type = "cpu";
+			reg = <0x00>;
+			status = "okay";
+			compatible = "picorv32,picorv32", "riscv";
+
+			riscv,isa-base = "rv32i";
+			riscv,isa-extensions = "i";
+
+			hlic0: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <0x01>;
+				interrupt-controller;
+			};
+		};
+	};
+
+	/* Matches picorv32_ram.v: 2048 words x 4 bytes = 0x2000 (8KB) */
+	ram0: memory@0 {
+		device_type = "memory";
+		reg = <0x00000000 0x00002000>;
+	};
+
+	soc {
+		#address-cells = <0x01>;
+		#size-cells = <0x01>;
+		compatible = "simple-bus";
+		ranges;
+
+		/* Matches picorv32_addr_decoder.v: UART at 0x10000000 */
+		uart0: uart@10000000 {
+			compatible = "picorv32,uart";
+			reg = <0x10000000 0x100>;
+			status = "okay";
+		};
+	};
+};

@@ -1,0 +1,7 @@
+# Kconfig.picorv32_board
+# Board-level Kconfig symbol. No bool type/prompt needed -- the build
+# system auto-generates BOARD_PICORV32_BOARD's type from board.yml.
+# Just select the SoC this board uses.
+
+config BOARD_PICORV32_BOARD
+	select SOC_PICORV32_SOC

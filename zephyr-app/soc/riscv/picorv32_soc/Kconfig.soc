@@ -1,0 +1,12 @@
+# Kconfig.soc
+# Identity symbol + ISA extension selects only. The architecture
+# select (RISCV) itself belongs in the plain Kconfig file below, per
+# Zephyr convention -- Kconfig.soc should only describe what this SoC
+# IS, not pull in the base architecture.
+
+config SOC_PICORV32_SOC
+	bool
+	select RISCV_ISA_RV32I
+
+config SOC
+	default "picorv32_soc" if SOC_PICORV32_SOC

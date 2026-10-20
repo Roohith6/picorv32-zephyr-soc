@@ -1,0 +1,6 @@
+# picorv32_board_defconfig
+# Intentionally minimal for now. No CONFIG_SERIAL/CONFIG_CONSOLE lines
+# yet -- there's no Zephyr UART *driver* written for this board yet
+# (only the peripheral RTL exists), so enabling console options here
+# would just fail to find a matching driver. Settings get added here
+# once the driver exists.

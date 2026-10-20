@@ -1,0 +1,24 @@
+# Simulation build artifacts
+*.out
+*.vcd
+*.vvp
+
+# Compiler object and temporary binary artifacts
+fw/*.o
+fw/*.bin
+fw/*.elf
+
+# Zephyr build directory
+zephyr-app/build/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Editor / OS files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/
+.idea/

@@ -1,0 +1,6 @@
+# soc.yml
+# Minimal SoC YAML per Zephyr's hardware model v2 -- describes just one
+# SoC, no family/series grouping needed since this isn't part of a
+# broader chip family.
+socs:
+  - name: picorv32_soc

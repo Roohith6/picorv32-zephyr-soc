@@ -1,0 +1,14 @@
+# picorv32,uart.yaml
+description: |
+  Custom UART transmitter for the PicoRV32 SoC (see picorv32_uart_tx.v).
+  Transmit-only, fixed baud rate set at synthesis time via the
+  CLKS_PER_BIT Verilog parameter -- not software-configurable, so no
+  current-speed property is used here.
+
+compatible: "picorv32,uart"
+
+include: [uart-controller.yaml]
+
+properties:
+  reg:
+    required: true

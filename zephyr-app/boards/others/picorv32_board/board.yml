@@ -1,0 +1,10 @@
+# board.yml
+# Links this board to the picorv32_soc SoC defined under
+# zephyr-app/soc/riscv/picorv32_soc/.
+
+board:
+  name: picorv32_board
+  full_name: PicoRV32 Custom SoC Board
+  vendor: others
+  socs:
+    - name: picorv32_soc
